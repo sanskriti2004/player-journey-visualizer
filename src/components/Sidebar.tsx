@@ -31,7 +31,13 @@ export default function Sidebar({ maps, mapId, matchCountByMap, days, selectedDa
   const listRef = useRef<HTMLUListElement>(null)
 
   useEffect(() => {
-    listRef.current?.querySelector('.match.active')?.scrollIntoView({ block: 'nearest' })
+    const list = listRef.current
+    const item = list?.querySelector('.match.active')
+    if (!list || !item) return
+    const l = list.getBoundingClientRect()
+    const i = item.getBoundingClientRect()
+    if (i.top < l.top) list.scrollTop += i.top - l.top
+    else if (i.bottom > l.bottom) list.scrollTop += i.bottom - l.bottom
   }, [matchId])
 
   const list = useMemo(() => {
