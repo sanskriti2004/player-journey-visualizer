@@ -1,0 +1,11 @@
+node_modules
+dist
+.venv
+data_raw
+player_data.zip
+.DS_Store
+__pycache__
+test-results
+playwright-report
+*.tmp.mjs
+assignment.md
