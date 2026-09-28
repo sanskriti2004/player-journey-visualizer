@@ -65,6 +65,7 @@ test('heatmap toggles and deep links restore state', async ({ page }) => {
 
 test('clicking a marker in the aggregate view opens its match', async ({ page, request }) => {
   await page.goto('./#map=Lockdown')
+  await expect(page.locator('.banner')).toBeVisible()
   const data = await (await request.get('data/Lockdown.json')).json()
   const [matchId, match] = Object.entries(data.matches).find(([, m]) =>
     (m as { players: { events: string[][] }[] }).players.some((p) => p.events.some((e) => e[3] === 'KilledByStorm')),
